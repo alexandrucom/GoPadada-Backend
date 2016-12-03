@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "MoHack": {
+      "applicationId": "Fk0VzYiaOcwOPa7CyMpO1yZrxJzorJCP9QzPKMjV"
+    },
+    "_default": {
+      "link": "MoHack"
+    }
+  }
+}
