@@ -979,6 +979,15 @@ div.carousel-inner .item img {
    SECTION FOOTER              
 -----------------------------------------*/
 
+.fa-facebook,
+.fa-twitter {
+    font-size: 24px;
+}
+
+.fa-twitter {
+    margin-left: 10px;
+}
+
 .copyright {
     background-color: #1A1D22;
     padding-bottom: 65px;
