@@ -9,10 +9,3 @@ module.exports.getCustomerById = function (customerId) {
     query.include('installation');
     return query.first();
 };
-
-module.exports.getStartedRideByCustomer = function(customer) {
-    var query = new Parse.Query("Ride");
-    query.equalTo("customer", customer);
-    query.doesNotExist("endedAt");
-    return query.first();
-};

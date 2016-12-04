@@ -1,5 +1,6 @@
 var installationRepository = require('cloud/dal/InstallationRepository.js');
 var customerRepository = require('cloud/dal/CustomerRepository.js');
+var ridesRepository = require('cloud/dal/RidesRepository.js');
 var JSONConverter = require('cloud/helpers/JsonConverter.js');
 
 //params: installationId
@@ -37,8 +38,8 @@ Parse.Cloud.define("startRide", function (request, response) {
     var beaconData = request.params.beaconData;
 
     customerRepository.getCustomerById(customerId).then(
-        function(customer) {
-            if(customer === undefined) {
+        function (customer) {
+            if (customer === undefined) {
                 response.error("No customer found with requested id");
             } else {
                 var Ride = Parse.Object.extend("Ride");
@@ -59,47 +60,78 @@ Parse.Cloud.define("startRide", function (request, response) {
                 );
             }
         },
-        function(error) {
+        function (error) {
             response.error(error);
         }
     );
 
 });
 
-//params: customerId,
+//params: customerId, beaconData
 Parse.Cloud.define("endRide", function (request, response) {
 
     var customerId = request.params.customerId;
     var beaconData = request.params.beaconData;
 
     customerRepository.getCustomerById(customerId).then(
-        function(customer) {
-            if(customer === undefined) {
+        function (customer) {
+            if (customer === undefined) {
                 response.error("No customer found with requested id");
             } else {
-                customerRepository.getStartedRideByCustomer(customer).then(
-                    function(ride) {
-                        if(ride === undefined) {
+                ridesRepository.getStartedRideByCustomer(customer).then(
+                    function (ride) {
+                        if (ride === undefined) {
                             response.error("No started ride for requested customer");
                         } else {
                             ride.set("endedAt", new Date());
                             ride.save().then(
-                                function(savedRide) {
+                                function (savedRide) {
                                     response.success(JSONConverter.rideToJson(savedRide));
                                 },
-                                function(error) {
+                                function (error) {
                                     response.error(error);
                                 }
                             );
                         }
                     },
-                    function(error) {
+                    function (error) {
                         response.error(error);
                     }
                 );
             }
         },
-        function(error) {
+        function (error) {
+            response.error(error);
+        }
+    );
+
+});
+
+//params: customerId
+Parse.Cloud.define("getRidesHistory", function (request, response) {
+
+    var customerId = request.params.customerId;
+
+    customerRepository.getCustomerById(customerId).then(
+        function (customer) {
+            if (customer === undefined) {
+                response.error("No customer found with requested id");
+            } else {
+                ridesRepository.getRidesHistoryForCustomer(customer).then(
+                    function (rides) {
+                        var jsonRides = [];
+                        rides.forEach(function(ride) {
+                            jsonRides.push(JSONConverter.rideToJson(ride));
+                        });
+                        response.success(jsonRides);
+                    },
+                    function (error) {
+                        response.error(error);
+                    }
+                );
+            }
+        },
+        function (error) {
             response.error(error);
         }
     );
