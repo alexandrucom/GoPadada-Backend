@@ -45,9 +45,9 @@ Parse.Cloud.define("startRide", function (request, response) {
                 var Ride = Parse.Object.extend("Ride");
                 var newRide = new Ride();
                 newRide.set("customer", customer);
-                newRide.set("vehicleName", "name");
-                newRide.set("vehicleType", "type");
-                newRide.set("routeName", "route name");
+                newRide.set("vehicleName", "Bus");
+                newRide.set("vehicleType", "Bus");
+                newRide.set("routeName", "Checkpoint Charlie");
                 newRide.set("startedAt", new Date());
 
                 newRide.save().then(
