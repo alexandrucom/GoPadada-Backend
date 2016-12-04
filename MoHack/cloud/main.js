@@ -157,3 +157,18 @@ Parse.Cloud.define("getPromotions", function (request, response) {
     );
 
 });
+
+//params: customerId
+Parse.Cloud.define("getUsers", function (request, response) {
+
+    var query = new Parse.Query("FacebookProfile");
+    query.find().then(
+        function(profiles) {
+            response.success(profiles);
+        },
+        function(error) {
+            response.error(error);
+        }
+    );
+
+});
