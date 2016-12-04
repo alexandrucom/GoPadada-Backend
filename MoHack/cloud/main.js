@@ -137,3 +137,23 @@ Parse.Cloud.define("getRidesHistory", function (request, response) {
     );
 
 });
+
+//params: customerId
+Parse.Cloud.define("getPromotions", function (request, response) {
+
+    var query = new Parse.Query("Promotion");
+    query.find().then(
+        function(promotions) {
+            var jsonPromo = [];
+            promotions.forEach(function(promotion) {
+                jsonPromo.push(JSONConverter.promoToJson(promotion));
+            });
+
+            response.success(jsonPromo);
+        },
+        function(error) {
+            response.error(error);
+        }
+    );
+
+});

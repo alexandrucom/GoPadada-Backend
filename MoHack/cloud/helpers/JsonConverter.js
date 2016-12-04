@@ -18,6 +18,7 @@ module.exports.customerToJson = function (customer) {
 
 };
 
+
 module.exports.rideToJson = function (ride) {
 
     if (ride) {
@@ -26,10 +27,10 @@ module.exports.rideToJson = function (ride) {
         rideJson["vehicleName"] = ride.get("vehicleName");
         rideJson["vehicleType"] = ride.get("vehicleType");
         rideJson["routeName"] = ride.get("routeName");
-        rideJson["startedAt"] = ride.get("startedAt");
-        rideJson["endedAt"] = ride.get("endedAt");
-        rideJson["createdAt"] = ride.get("createdAt") ? customer.get("createdAt").getTime() : undefined;
-        rideJson["updatedAt"] = ride.get("updatedAt") ? customer.get("updatedAt").getTime() : undefined;
+        rideJson["startedAt"] = ride.get("startedAt") ? ride.get("startedAt").getTime() : undefined;
+        rideJson["endedAt"] = ride.get("endedAt") ? ride.get("endedAt").getTime() : undefined;
+        rideJson["createdAt"] = ride.get("createdAt") ? ride.get("createdAt").getTime() : undefined;
+        rideJson["updatedAt"] = ride.get("updatedAt") ? ride.get("updatedAt").getTime() : undefined;
 
         return rideJson;
     } else {
@@ -55,6 +56,29 @@ module.exports.facebookProfileToJson = function (facebookProfile) {
         facebookProfileJson["createdAt"] = facebookProfile.get("createdAt") ? facebookProfile.get("createdAt").getTime() : undefined;
 
         return facebookProfileJson;
+
+    } else {
+
+        return undefined;
+
+    }
+
+};
+
+module.exports.promoToJson = function (promo) {
+
+    if (promo) {
+
+        var promoJson = {};
+
+        promoJson["objectId"] = promo.id;
+        promoJson["title"] = promo.get("title");
+        promoJson["description"] = promo.get("description");
+        promoJson["points"] = promo.get("points");
+        promoJson["photoURL"] = promo.get("photo").url();
+        promoJson["createdAt"] = promo.get("createdAt") ? promo.get("createdAt").getTime() : undefined;
+
+        return promoJson;
 
     } else {
 
