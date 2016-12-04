@@ -40,7 +40,7 @@ p {
 -----------------------------------------*/
 
 .section_title {
-    padding-top: 90px;
+    padding-top: 30px;
     padding-bottom: 50px;
 }
 .section_title h2 {
@@ -130,8 +130,14 @@ p {
     }
 }
 @media (max-width: 768px) {
-    .navbar-brand img {} .navbar-default {
+    .navbar-brand img {
+        width: 40px !important;
+    } 
+    .navbar-default {
       /*  background-color: #fff !important; */
+    }
+    .navbar-default .navbar-nav>li>a {
+        color: #ffffff;
     }
 }
 .navbar-default .navbar-nav>.active>a,
@@ -150,6 +156,9 @@ p {
 }
 .logo{
     padding-bottom: 50px;
+}
+.logo img {
+    width: 180px;
 }
 .home_text{
     text-align: center;
@@ -323,6 +332,7 @@ tuor:visited {
 }
 .video_title {
     padding-bottom: 30px;
+    text-align: center;
 }
 .video_title h2 {
     text-transform: uppercase;
@@ -331,15 +341,6 @@ tuor:visited {
     line-height: 37px;
     position: relative;
     margin-top: 0px;
-}
-.video_title h2:after {
-    content: "";
-    position: absolute;
-    bottom: -12px;
-    left: 0;
-    width: 70px;
-    background: #f39c12;
-    height: 1px;
 }
 .video_title p {
     font-size: 18px;
@@ -387,6 +388,15 @@ tuor:visited {
     width: 100%;
     height: auto;
 }
+
+.einstein-offer,
+.europcar-offer,
+.museum-offer {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .testimonial {
     background: url(../images/testimonial.jpg);
     background-size: cover;
@@ -585,7 +595,7 @@ div.carousel-inner .item img {
 -----------------------------------------*/
 
 .apps_screen {
-    background: #f1f1f1;
+    background: #ffffff;
     padding-bottom: 96px;
 }
 .screen_slider {
